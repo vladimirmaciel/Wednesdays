@@ -1,0 +1,25 @@
+{% extends 'events/base.html' %}{% block content %}
+<!-- tem que ter block content  e  endblock -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <center>
+        {% if searched%}
+        <h1>You Searched For {{ searched }} </h1><br/> {% for venue in venues %} <a href="{% url 'show-venue' venue.id %}">{{ venue }}</a>
+        <br/> {% endfor%} {% else %}
+        <h1>Hey! You Forgot To Search For A Venue...</h1>
+        {% endif%}
+
+    </center>
+    {% endblock%}
+</body>
+
+</html>

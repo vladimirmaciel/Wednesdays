@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!DOCTYPE html> {% extends 'events/base.html' %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+
+    <h1>Events</h1>
+    <br/>
+    <!--  for abaixo  percore o queryset e mostra de um por um na tela  -->
+    {% for event in event_list %}
+    <!--  card bootstrap5    -->
+    <div class="card">
+        <div class="card-header">
+            {{ event }}
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Venue: {{ event.venue }}</h5>
+            <p class="card-text">
+
+                <li>
+                    <!-- {{ event.event_date }} lista da data do evento verficiar os campos no model Event -->
+                    Date: {{event.event_date }}
+                </li>
+                <li>Venue: {{ event.venue }}</li>
+                <li>Venue Website: {{ event.venue.web }}</li>
+                <!-- {{ event.venue.web }} poderia substituir .web por qualquer campo do Venue  -->
+                <li>Manager: {{ event.manager }} </li>
+                <li>Description: {{ event.description }} </li>
+
+                <!-- listar todos  Attendees -->
+                <li> <strong>Attendees:<br/></strong> {% for user in event.attendees.all %} {{ user }} <br/>{% endfor%}
+                </li>
+
+            </p>
+        </div>
+    </div>
+
+    <!-- ------- FIM ------ -->
+
+    <br/><br/> {% endfor %}
+    <!--  {{ event_list}} Lista todos os eventos via QuerySet -->
+    {% endblock%}
+</body>
+
+</html>

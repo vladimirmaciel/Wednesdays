@@ -1,0 +1,23 @@
+<!DOCTYPE html> {% extends 'events/base.html' %}{% block content %}
+<!-- tem que ter block content  e  endblock -->
+<br lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site myclub</title>
+</head>
+
+<center>
+    <h1>Hello {{first_name}}! Events For {{month}} {{year}} </h1>
+
+    <!-- colocar o safe para aprecer o calenadrio na forma correta -->
+    As of {{ time }} <br/> <br> {{ month_number }} <br/>{{ cal|safe }}
+    <br/><br/><br/><br/> Copyright (c) {{current_year}}
+</center>
+
+{% endblock%}
+</body>
+
+</html>

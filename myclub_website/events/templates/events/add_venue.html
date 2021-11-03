@@ -1,0 +1,28 @@
+{% extends 'events/base.html' %}{% block content %}
+<!-- tem que ter block content  e  endblock -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venue</title>
+</head>
+
+<body>
+    <center>
+        <h1>Add Venue To Database</h1>
+        <br/>
+        <br/> {% if submitted %} Your Venue Was Submitted Succefully!!! {% else %}
+        <form action="" method=POST>
+            {% csrf_token%}{{ form.as_p}}
+            <!--  form.as_p (exibe o forumlário na pagina ) -->
+            <input type="submit" value="Submit" class="btn btn-secondary">
+        </form>
+        {% endif %}
+    </center>
+    {% endblock%}
+</body>
+
+</html>

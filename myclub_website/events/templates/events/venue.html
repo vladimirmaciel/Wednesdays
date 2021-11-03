@@ -1,0 +1,33 @@
+{% extends 'events/base.html' %} {% block content %}
+<!-- tem que ter block content  e  endblock -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Venues ...</h1>
+    <table class="table table-striped table-hover table-bordered">
+        <!-- ira ista todos os nome e web da class Venue do models.py -->
+        {% for venue in venue_list %}
+        <tr>
+            <td>
+                <a href="{% url 'show-venue' venue.id %}">{{ venue }}</a>
+            </td>
+            <td align="right">
+                <a href="{% url 'update-venue' venue.id %}" class="btn btn-outline-secondary btn-sm">Update</a>
+            </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</body>
+
+</html>
+{% endblock%}
