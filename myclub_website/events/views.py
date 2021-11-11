@@ -7,6 +7,15 @@ from .models import Event, Venue
 from .forms import VenueForm
 
 
+# def update_event(request, event_id):
+#     event = Event.objects.get(pk=event_id) # passado o id do objeto desejado
+#     form = EventForm(request.POST or None, instance=event)
+#     if form.is_valid():
+#         form.save()
+#         return redirect('list-events')
+#     return render(request, 'events/update_events.html',{'event':event, 'form':form})
+
+
 def update_venue(request, venue_id):
     venue = Venue.objects.get(pk=venue_id) # passado o id do objeto desejado
     form = VenueForm(request.POST or None, instance=venue)
