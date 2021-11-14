@@ -20,13 +20,17 @@
                 <li>Manager: {{ event.manager }}</li>
                 <li>Description: {{ event.description }}</li>
                 <!-- listar todos  Attendees -->
-                <li>Attendees:<br/> {% for user in event.attendees.all %} {{ user }}<br/> {% endfor %}
+                <li>Attendees:<br/> 
+                    {% for user in event.attendees.all %} {{ user }}<br/> {% endfor %}
                 </li>
             </ul>
 
 
 
         </p>
+        <div class="card-footer text-muted">
+           <a href="">Update Event</a> 
+        </div>
     </div>
     <!-- ------- FIM ------ -->
 
