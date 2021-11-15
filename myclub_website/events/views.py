@@ -102,7 +102,7 @@ def list_venues(request):
         Esta view irá lsitar todas as veunes cadastrados 
     '''
     # venue_list = Venue .objects.all()
-    venue_list = Venue.objects.all()
+    venue_list = Venue.objects.all().order_by('name')
     return render(request, 'events/venue.html', {'venue_list': venue_list})
 
 
