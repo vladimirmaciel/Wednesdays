@@ -3,9 +3,39 @@ import calendar  # imporanto biblioteca calendar do django
 # importa HTMLCalendar dentro da bilioteca calendar
 from calendar import HTMLCalendar
 from datetime import datetime
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, response
+from django.http import HttpResponse
 from .models import Event, Venue
 from .forms import VenueForm, EventForm
+
+# Generate Text File Venue List
+
+
+def venue_text(request):
+    response = HttpResponse(content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename=venues.txt'
+
+    # Designate The Model
+    venues = Venue.objects.all()
+
+    # Create blank list
+    lines = []
+
+    # Loop Thu an output
+    for venue in venues:
+        # lines.append(f'{venue}\n') lista todos
+        lines.append(
+            f'{venue.name}\n{venue.address}\n{venue.zip_code}\n{venue.phone}\n{venue.web}\n{venue.email_address}\n\n\n')
+
+        # lines = ["This is line 1\n",
+        #          "This is line 2\n",
+        #          "This is line 3\n\n",
+        #          "Vladimir Maciel Serra is Awesome!\n"
+        #          ]
+
+        # Write To TextFile
+    response.writelines(lines)
+    return response
 
 # Delete Venue
 
