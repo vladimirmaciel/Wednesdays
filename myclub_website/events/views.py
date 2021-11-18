@@ -16,6 +16,9 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
 
+# Import Pagination Stuff
+from django.core.paginator import Paginator
+
 
 #  Generate a PDF file venue List
 #  instalar biblioteca reportlab (pip install reportlab)
@@ -217,12 +220,19 @@ def show_venue(request, venue_id):  # <venue_id> foi passado como parametro
 
 
 def list_venues(request):
-    '''
-        Esta view irá lsitar todas as veunes cadastrados 
-    '''
-    # venue_list = Venue .objects.all()
-    venue_list = Venue.objects.all().order_by('name')
-    return render(request, 'events/venue.html', {'venue_list': venue_list})
+    #venue_list = Venue.objects.all().order_by('?')
+    venue_list = Venue.objects.all()
+
+    # Set up Pagination
+    p = Paginator(Venue.objects.all(), 3)
+    page = request.GET.get('page')
+    venues = p.get_page(page)
+    nums = "a" * venues.paginator.num_pages
+    return render(request, 'events/venue.html',
+                  {'venue_list': venue_list,
+                   'venues': venues,
+                   'nums': nums}
+                  )
 
 
 def add_venue(request):
